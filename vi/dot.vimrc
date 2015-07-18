@@ -57,6 +57,14 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 
+" インデントとタブ表示設定
+set smartindent
+set autoindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab       " ソフトタブ
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
     " Enable file type detection.
@@ -71,7 +79,10 @@ if has("autocmd")
 
     " For all text files set 'textwidth' to 78 characters.
     autocmd FileType text setlocal textwidth=78
-
+    autocmd! FileType javascript setlocal shiftwidth=4 tabstop=2 softtabstop=2
+    "set colorcolumn=80
+    " set shiftround
+    "set expandtab
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
     " (happens when dropping a file on gvim).
@@ -159,6 +170,13 @@ if exists('&ambiwidth')
 	set ambiwidth=double
 endif
 
+" ステータスラインを常に２行にする
+set laststatus=2    " See :help laststatus
+" ステータスラインに文字コードと改行文字を常に表示しておく
+set statusline =%<%F\ %m%r%h%w
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
+set statusline+=%=%l,%c%V%8P
+
 "-----------------------------------------------------------------------------
 " Binary editor mode: vim -b or *.bin to boot
 augroup BinaryXXD
@@ -171,14 +189,6 @@ augroup BinaryXXD
     autocmd BufWritePost * set nomod | endif
 augroup END
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-"set colorcolumn=80
-" set shiftround
-"set expandtab
-set smartindent
-set autoindent
 set backspace=2     " 'Backspace' can delete indent and CR/LF
 set wrapscan
 set showmatch
@@ -196,7 +206,6 @@ set number
 set ruler
 set list
 set listchars=tab:\|-,extends:<,eol:$
-set laststatus=2    " See :help laststatus
 set cmdheight=2
 set showcmd
 set title
@@ -258,3 +267,4 @@ if has('kaoriya')
     let $PYTHON_DLL = ''
     let $RUBY_DLL = ''
 endif
+
