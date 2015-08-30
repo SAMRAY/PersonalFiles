@@ -1,27 +1,25 @@
-# 少し凝った zshrc
-# License : MIT
-# http://mollifier.mit-license.org/
+# Set up the prompt
 
-########################################
+autoload -Uz promptinit
+promptinit
+prompt adam1
+
+setopt histignorealldups sharehistory
+
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
 # 環境変数
 export LANG=ja_JP.UTF-8
 
-# 色を使用出来るようにする
-autoload -Uz colors
-colors
-
-# キーバインド
-#bindkey -e  # emacsモードで使う
-bindkey -a  # vicmdモード
-# bindkey -v # viinsモード
-
-# ヒストリの設定
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-
-# プロンプト
-PROMPT="%n@%m%~ %# "
+# Use modern completion system
+autoload -Uz compinit
+compinit
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -40,7 +38,7 @@ autoload -Uz compinit
 compinit -u
 
 # 補完で小文字でも大文字にマッチさせる
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
 # ../ の後は今いるディレクトリを補完しない
 zstyle ':completion:*' ignore-parents parent pwd ..
@@ -107,6 +105,7 @@ setopt hist_reduce_blanks
 # 高機能なワイルドカード展開を使用する
 setopt extended_glob
 
+
 ########################################
 # キーバインド
 
@@ -146,7 +145,6 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 
 
-
 ########################################
 # OS 別の設定
 case ${OSTYPE} in
@@ -162,3 +160,21 @@ case ${OSTYPE} in
 esac
 
 # vim:set ft=zsh:
+
+# zstyle ':completion:*' auto-description 'specify: %d'
+# zstyle ':completion:*' completer _expand _complete _correct _approximate
+# zstyle ':completion:*' format 'Completing %d'
+# zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' menu select=2
+# eval "$(dircolors -b)"
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' list-colors ''
+# zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+#
+# zstyle ':completion:*' menu select=long
+# zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+# zstyle ':completion:*' use-compctl false
+# zstyle ':completion:*' verbose true
+#
+# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+# zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
