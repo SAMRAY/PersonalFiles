@@ -114,14 +114,11 @@ setopt extended_glob
 
 ########################################
 # エイリアス
-
 alias la='ls -a'
 alias ll='ls -l'
-
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-
 alias mkdir='mkdir -p'
 
 # sudo の後のコマンドでエイリアスを有効にする
@@ -130,6 +127,7 @@ alias sudo='sudo '
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
+
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -152,6 +150,7 @@ case ${OSTYPE} in
 		#Mac用の設定
 		export CLICOLOR=1
 		alias ls='ls -G -F'
+		alias updatedb='sudo /usr/libexec/locate.updatedb'
 		;;
 	linux*)
 		#Linux用の設定
@@ -160,6 +159,11 @@ case ${OSTYPE} in
 esac
 
 # vim:set ft=zsh:
+
+# brewのzsh-completionsで補完を強化
+if [ -e /usr/local/share/zsh-completions ]; then
+	fpath=(/usr/local/share/zsh-completions $fpath)
+fi
 
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
