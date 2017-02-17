@@ -17,7 +17,7 @@
 " set the X11 font to use
 " set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 
-set ch=2            " Make command line two lines high
+"set ch=2            " Make command line two lines high
 set mousehide       " Hide the mouse when typing text
 
 " Make shift-insert work like in Xterm
@@ -66,8 +66,8 @@ endif
 " set guifontwide=M+2VM+IPAG\ circle\ Regular:h12.5
 " set guifont=Migu\ 2M\ Regular:h14
 " set guifont=Envy\ Code\ R:h13.5
-set guifont=Ricty\ Discord:h12
-set guifontwide=Ricty\ Discord:h12
+set guifont=Anka/Coder:h12
+set guifontwide=Anka/Coder:h12
 "---------------------------------------------------------------------------
 " IME Configurations
 " inoremap <ESC> <ESC>:set iminsert=0<CR>
@@ -96,6 +96,7 @@ set guifontwide=Ricty\ Discord:h12
 "colorscheme solarized
 " hybrid
 let g:hybrid_use_Xresources = 1
+background=dark
 colorscheme hybrid
 
 " 全角スペースの表示変換

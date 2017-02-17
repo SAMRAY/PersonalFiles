@@ -1,61 +1,34 @@
-" $Id: dot.google-macvim-vimrc,v 1.7 2009/12/14 07:48:11 ak Exp $
-" An example for a vimrc file.
-"
-" Maintainer:   Bram Moolenaar <Bram@vim.org>
-" Last change:  2008 Jul 02
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"             for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"           for OpenVMS:  sys$login:.vimrc
-"
-" http://www.ibm.com/developerworks/jp/linux/library/l-vim-script-1/
-
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-    finish
-endif
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+"--------------------
+" 基本的な設定
+"--------------------
+"vi互換を無効
 set nocompatible
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+"新しい行のインデントを現在行と同じにする
+set autoindent
+ 
+"バックアップファイルのディレクトリを指定する
+set backupdir=$HOME/.vimbackup
+"set nobackup
 
-if has("vms")
-    set nobackup    " do not keep a backup file, use versions instead
-else
-    set backup      " keep a backup file
-endif
+"スワップファイル用のディレクトリを指定する
+set directory=$HOME/.vimbackup
+"set noswapfile
 
-set history=50      " keep 50 lines of command line history
-set ruler           " show the cursor position all the time
-set showcmd         " display incomplete commands
-set incsearch       " do incremental searching
+"変更中のファイルでも、保存しないで他のファイルを表示する
+set hidden
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+"インクリメンタルサーチを行う
+set incsearch
+ 
+"行番号を表示する
+set number
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
+"閉括弧が入力された時、対応する括弧を強調する
+set showmatch
 
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-    set mouse=a
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-    syntax on
-    set hlsearch
-endif
+"新しい行を作った時に高度な自動インデントを行う
+set smarttab
 
 " インデントとタブ表示設定
 set smartindent
@@ -63,7 +36,8 @@ set autoindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab       " ソフトタブ
+" ソフトタブ
+set noexpandtab
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -200,9 +174,7 @@ let format_allow_over_tw=1
 "---------------------------------------------------------------------------
 set noignorecase
 set smartcase
-set incsearch
 set nowrap
-set number
 set ruler
 set list
 set listchars=tab:\|-,extends:<,eol:$
@@ -210,11 +182,9 @@ set cmdheight=2
 set showcmd
 set title
 
-" set nobackup
 set viminfo=
-set noswapfile
 set autoread
-set backupdir=$HOME/vimbackup
+
 set wildmode=longest,list,full
 
 abbr RULER \|----\|----\|----\|----\|----\|----\|----\|----\|----\|----\|----\|----\|----\|----\|----\|
