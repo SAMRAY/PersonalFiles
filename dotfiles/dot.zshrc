@@ -32,7 +32,10 @@ zstyle ':zle:*' word-style unspecified
 ########################################
 # 補完
 # zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+# brewのzsh-completionsで補完を強化
+if [ -e /usr/local/share/zsh-completions ]; then
+	fpath=(/usr/local/share/zsh-completions $fpath)
+fi
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit -u
@@ -160,11 +163,6 @@ esac
 
 # vim:set ft=zsh:
 
-# brewのzsh-completionsで補完を強化
-if [ -e /usr/local/share/zsh-completions ]; then
-	fpath=(/usr/local/share/zsh-completions $fpath)
-fi
-
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
 # zstyle ':completion:*' format 'Completing %d'
@@ -182,3 +180,4 @@ fi
 #
 # zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
